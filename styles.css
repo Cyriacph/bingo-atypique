@@ -1,0 +1,166 @@
+/* General Styles */
+:root {
+  --primary-bg: #1a1a2e;
+  --secondary-bg: #16213e;
+  --accent-color: #e94560;
+  --text-color: #eaeaea;
+  --square-bg: rgba(255, 255, 255, 0.05);
+  --square-border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+body {
+  font-family: 'Saira', sans-serif;
+  background-color: var(--primary-bg);
+  color: var(--text-color);
+  margin: 0;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.app-container {
+  max-width: 1100px;
+  width: 100%;
+  text-align: center;
+}
+
+h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: white;
+  text-shadow: 0 0 10px rgba(233, 69, 96, 0.5);
+}
+
+/* Login Screen */
+#login-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+#login-screen button {
+  padding: 12px 24px;
+  font-size: 1rem;
+  font-family: 'Saira', sans-serif;
+  font-weight: 600;
+  background-color: var(--accent-color);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+#login-screen button:hover {
+  background-color: #ff6b81;
+}
+
+/* Bingo Card */
+.bingo-card {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  gap: 4px;
+  width: 100%;
+  max-width: 1080px;
+  background-color: var(--secondary-bg);
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  margin: 20px auto;
+}
+
+.bingo-square {
+  background-color: var(--square-bg);
+  border: var(--square-border);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  position: relative;
+  aspect-ratio: 1;
+}
+
+.bingo-square.free-space {
+  background-color: rgba(233, 69, 96, 0.2);
+}
+
+.bingo-event {
+  font-size: clamp(14px, 2vw, 18px);
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 10px;
+  word-break: break-word;
+}
+
+.bingo-url-input {
+  width: 90%;
+  padding: 5px;
+  font-size: clamp(10px, 1.5vw, 12px);
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 1px dashed rgba(255, 255, 255, 0.3);
+  border-radius: 4px;
+  color: var(--text-color);
+  text-align: center;
+  margin-top: 5px;
+}
+
+.bingo-checkbox {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  accent-color: var(--accent-color);
+}
+
+/* Actions */
+.bingo-actions {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.bingo-actions button {
+  padding: 10px 20px;
+  font-size: 0.9rem;
+  font-family: 'Saira', sans-serif;
+  font-weight: 600;
+  background-color: var(--accent-color);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.bingo-actions button:hover {
+  background-color: #ff6b81;
+}
+
+#logout {
+  background-color: #555;
+}
+
+#logout:hover {
+  background-color: #777;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .bingo-card {
+    grid-template-columns: repeat(5, 1fr);
+    max-width: 100%;
+  }
+  h1 {
+    font-size: 1.8rem;
+  }
+}

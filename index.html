@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bingo Atypique 999</title>
+  <link href="https://fonts.googleapis.com/css2?family=Saira:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+</head>
+<body>
+  <div class="app-container">
+    <div id="login-screen">
+      <h1>UN BINGO ATYPIQUE 999</h1>
+      <p>Connecte-toi pour obtenir ta carte de bingo !</p>
+      <button id="google-login">Se connecter avec Google</button>
+      <button id="twitch-login">Se connecter avec Twitch</button>
+    </div>
+
+    <div id="bingo-screen" style="display: none;">
+      <h1>TA CARTE DE BINGO</h1>
+      <div class="bingo-card"></div>
+      <div class="bingo-actions">
+        <button id="save-progress">Sauvegarder</button>
+        <button id="share-card">Partager ma carte</button>
+        <button id="logout">Se déconnecter</button>
+      </div>
+    </div>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
