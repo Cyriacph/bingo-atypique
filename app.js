@@ -82,33 +82,23 @@ function renderBingoCard(card) {
       // Event text
       const eventElement = document.createElement("div");
       eventElement.classList.add("bingo-event");
-      eventElement.textContent = square.text;
+      if (square.isFreeSpace) {
+        eventElement.innerHTML = `
+          <div class="free-space-text">
+            <span class="case">CASE</span>
+            <br>
+            <span class="gratuite">GRATUITE</span>
+          </div>
+        `;
+      } else {
+        eventElement.textContent = square.text;
+      }
       squareElement.appendChild(eventElement);
 
       // Clip URL input (skip for free space)
       if (!square.isFreeSpace) {
-        const urlInput = document.createElement("input");
-        urlInput.type = "text";
-        urlInput.classList.add("bingo-url-input");
-        urlInput.placeholder = "Lien du clip ici";
-        urlInput.value = square.url || "";
-        urlInput.addEventListener("change", (e) => {
-          card[rowIndex][colIndex].url = e.target.value;
-        });
-        squareElement.appendChild(urlInput);
-
-        // Checkbox
-        const checkbox = document.createElement("input");
-        checkbox.type = "checkbox";
-        checkbox.classList.add("bingo-checkbox");
-        checkbox.checked = square.checked;
-        checkbox.addEventListener("change", (e) => {
-          card[rowIndex][colIndex].checked = e.target.checked;
-          checkForWins(card);
-        });
-        squareElement.appendChild(checkbox);
+        // ... (rest of your existing code)
       }
-
       bingoCard.appendChild(squareElement);
     });
   });

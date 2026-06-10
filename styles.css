@@ -1,8 +1,8 @@
 /* General Styles */
 :root {
   --primary-bg: #240145;
-  --secondary-bg: #D21F3C;
-  --accent-color: #D21F3C;
+  --secondary-bg: #d21f3c;
+  --accent-color: #d21f3c;
   --text-color: #eaeaea;
   --square-bg: rgba(255, 255, 255, 0.05);
   --square-border: 1px solid rgba(255, 255, 255, 0.1);
@@ -32,7 +32,7 @@ h1 {
   font-size: 9.5rem;
   margin-bottom: 20px;
   color: white;
-  text-shadow: 0 0 10px rgba(233, 69, 96, 0.5);
+  text-shadow: none;
 }
 
 /* Login Screen */
@@ -57,7 +57,7 @@ h1 {
 }
 
 #login-screen button:hover {
-  background-color: #ff6b81;
+  background-color: #d21f3c;
 }
 
 /* Bingo Card */
@@ -89,8 +89,51 @@ h1 {
   aspect-ratio: 1;
 }
 
+/* Free Space Square */
 .bingo-square.free-space {
-  background-color: rgba(233, 69, 96, 0.2);
+  background-color: black;
+  border: 3px solid #d21f3c;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 1;
+  padding: 0;
+}
+
+/* Free Space Text Container */
+.free-space .bingo-event .free-space-text {
+  text-align: center;
+  line-height: 0.7;
+  width: 100%;
+}
+
+/* Style for "CASE" */
+.free-space .bingo-event .case {
+  font-family: 'Saira UltraCondensed', sans-serif;
+  font-weight: 900;
+  font-size: 140px;
+  display: block;
+  color: #F5D417;
+  -webkit-text-stroke: 6px black;
+  paint-order: stroke fill;
+  text-transform: uppercase;
+  margin: 0 0 -5px 0;
+}
+
+/* Style for "GRATUITE" */
+.free-space .bingo-event .gratuite {
+  font-family: 'Saira UltraCondensed', sans-serif;
+  font-weight: 900;
+  font-size: 70px;
+  display: block;
+  color: #F5D417;
+  -webkit-text-stroke: 6px black;
+  paint-order: stroke fill;
+  text-transform: uppercase;
+  margin: 0;
 }
 
 .bingo-event {
@@ -145,7 +188,7 @@ h1 {
 }
 
 .bingo-actions button:hover {
-  background-color: #ff6b81;
+  background-color: #d21f3c;
 }
 
 #logout {
@@ -163,6 +206,12 @@ h1 {
     max-width: 100%;
   }
   h1 {
-    font-size: 1.8rem;
+    font-size: 3rem;
+  }
+  .free-space .bingo-event .case {
+    font-size: 50px !important;
+  }
+  .free-space .bingo-event .gratuite {
+    font-size: 25px !important;
   }
 }
