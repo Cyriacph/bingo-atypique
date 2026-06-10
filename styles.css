@@ -6,6 +6,8 @@
   --text-color: #eaeaea;
   --square-bg: rgba(255, 255, 255, 0.05);
   --square-border: 1px solid rgba(255, 255, 255, 0.1);
+  --inactive-color: #d3d3d3; /* Light gray for inactive elements */
+  --active-color: #F5D417; /* Ospuze yellow for active elements */
 }
 
 body {
@@ -48,8 +50,8 @@ h1 {
   font-size: 1rem;
   font-family: 'Saira', sans-serif;
   font-weight: 600;
-  background-color: var(--accent-color);
-  color: white;
+  background-color: var(--inactive-color); /* Light gray when inactive */
+  color: black;
   border: none;
   border-radius: 8px;
   cursor: pointer;
@@ -57,7 +59,7 @@ h1 {
 }
 
 #login-screen button:hover {
-  background-color: #d21f3c;
+  background-color: var(--active-color); /* Ospuze yellow when hovered */
 }
 
 /* Bingo Card */
@@ -136,26 +138,27 @@ h1 {
   margin: 0;
 }
 
-.bingo-event {
-  font-size: clamp(14px, 2vw, 18px);
-  font-weight: 600;
-  text-align: center;
-  margin-bottom: 10px;
-  word-break: break-word;
-}
-
+/* Clip URL Input Field */
 .bingo-url-input {
   width: 90%;
   padding: 5px;
   font-size: clamp(10px, 1.5vw, 12px);
-  background-color: rgba(255, 255, 255, 0.1);
-  border: 1px dashed rgba(255, 255, 255, 0.3);
+  background-color: var(--inactive-color); /* Light gray when inactive */
+  border: 1px solid #999;
   border-radius: 4px;
-  color: var(--text-color);
+  color: black;
   text-align: center;
   margin-top: 5px;
+  transition: background-color 0.3s, border-color 0.3s;
 }
 
+.bingo-url-input:focus {
+  background-color: var(--active-color); /* Ospuze yellow when activated */
+  border-color: black;
+  outline: none;
+}
+
+/* Checkbox Styling */
 .bingo-checkbox {
   position: absolute;
   top: 5px;
@@ -163,7 +166,19 @@ h1 {
   width: 20px;
   height: 20px;
   cursor: pointer;
-  accent-color: var(--accent-color);
+  appearance: none;
+  background-color: var(--inactive-color); /* Light gray when unchecked */
+  border: 1px solid #999;
+  border-radius: 3px;
+  transition: background-color 0.3s;
+}
+
+.bingo-checkbox:checked {
+  background-color: var(--active-color); /* Ospuze yellow when checked */
+  border-color: black;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='black'%3E%3Cpath d='M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 /* Actions */
@@ -179,8 +194,8 @@ h1 {
   font-size: 0.9rem;
   font-family: 'Saira', sans-serif;
   font-weight: 600;
-  background-color: var(--accent-color);
-  color: white;
+  background-color: var(--inactive-color); /* Light gray when inactive */
+  color: black;
   border: none;
   border-radius: 8px;
   cursor: pointer;
@@ -188,15 +203,15 @@ h1 {
 }
 
 .bingo-actions button:hover {
-  background-color: #d21f3c;
+  background-color: var(--active-color); /* Ospuze yellow when hovered */
 }
 
 #logout {
-  background-color: #555;
+  background-color: var(--inactive-color);
 }
 
 #logout:hover {
-  background-color: #777;
+  background-color: var(--active-color);
 }
 
 /* Responsive */
