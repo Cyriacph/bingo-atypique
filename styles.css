@@ -2,7 +2,7 @@
 :root {
   --primary-bg: #240145;
   --secondary-bg: #D21F3C;
-  --accent-color: #f5d417;
+  --accent-color: #D21F3C;
   --text-color: #eaeaea;
   --square-bg: rgba(255, 255, 255, 0.05);
   --square-border: 1px solid rgba(255, 255, 255, 0.1);
@@ -27,8 +27,9 @@ body {
 }
 
 h1 {
-  font-size: 2.5rem;
-  font-weight: 700;
+  font-family: 'Saira UltraCondensed', sans-serif;
+  font-weight: 900;
+  font-size: 9.5rem;
   margin-bottom: 20px;
   color: white;
   text-shadow: 0 0 10px rgba(233, 69, 96, 0.5);
