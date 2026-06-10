@@ -1,11 +1,12 @@
-// Firebase Configuration (REPLACE WITH YOUR OWN FROM FIREBASE CONSOLE)
+// Firebase Configuration
 const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_AUTH_DOMAIN",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_STORAGE_BUCKET",
-  messagingSenderId: "YOUR_SENDER_ID",
-  appId: "YOUR_APP_ID"
+  apiKey: "AIzaSyCVCCV3b5e6aHX-Arb7riK1rnrGy85tmw4",
+  authDomain: "bingo-atypique.firebaseapp.com",
+  projectId: "bingo-atypique",
+  storageBucket: "bingo-atypique.appspot.com",
+  messagingSenderId: "30273093295",
+  appId: "1:30273093295:web:48007bcc65a4ea242d9e5a",
+  measurementId: "G-X2M5NVHMF4"
 };
 
 // Initialize Firebase
