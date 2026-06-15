@@ -6,7 +6,7 @@ const firebaseConfig = {
   storageBucket: "bingo-atypique.appspot.com",
   messagingSenderId: "30273093295",
   appId: "1:30273093295:web:48007bcc65a4ea242d9e5a",
-  measurementId: "G-X2M5NVHMF4"
+  measurementId: "G-X2M5NVHMF4",
 };
 
 // Initialize Firebase
@@ -26,15 +26,32 @@ const bingoCard = document.querySelector(".bingo-card");
 
 // Events List
 const events = [
-  "Le streamer dit 'Putain'", "Le chat spamme 'LUL'", "Quelqu’un fait un don de 5€+",
-  "Le streamer boit de l’eau", "Un viewer offre un abonnement", "Le streamer rit aux éclats",
-  "Quelqu’un utilise un emote personnalisé", "Le streamer perd contre un jeu", "Un mod supprime un message",
-  "Le streamer chante", "Le streamer rage contre un jeu", "Le chat fait un 'KEKW' en masse",
-  "Le streamer trébuche sur ses mots", "Un viewer demande 'C’est quand le next stream ?'",
-  "Le streamer imite un accent", "Quelqu’un poste un copypasta", "Le streamer fait un troll",
-  "Un meme apparaît en chat", "Le streamer pleure (de rire)", "Un viewer offre un don de 50€+",
-  "Le streamer fait un ASMR involontaire", "Un animal/objet apparaît à l’écran", "Le streamer parle d’un sujet controversé",
-  "Quelqu’un gagne un giveaway", "Le streamer mange à l’écran", "Un viewer fait un raid"
+  "Le streamer dit 'Putain'",
+  "Le chat spamme 'LUL'",
+  "Quelqu’un fait un don de 5€+",
+  "Le streamer boit de l’eau",
+  "Un viewer offre un abonnement",
+  "Le streamer rit aux éclats",
+  "Quelqu’un utilise un emote personnalisé",
+  "Le streamer perd contre un jeu",
+  "Un mod supprime un message",
+  "Le streamer chante",
+  "Le streamer rage contre un jeu",
+  "Le chat fait un 'KEKW' en masse",
+  "Le streamer trébuche sur ses mots",
+  "Un viewer demande 'C’est quand le next stream ?'",
+  "Le streamer imite un accent",
+  "Quelqu’un poste un copypasta",
+  "Le streamer fait un troll",
+  "Un meme apparaît en chat",
+  "Le streamer pleure (de rire)",
+  "Un viewer offre un don de 50€+",
+  "Le streamer fait un ASMR involontaire",
+  "Un animal/objet apparaît à l’écran",
+  "Le streamer parle d’un sujet controversé",
+  "Quelqu’un gagne un giveaway",
+  "Le streamer mange à l’écran",
+  "Un viewer fait un raid",
 ];
 
 // Current user's bingo card
@@ -57,9 +74,19 @@ function generateBingoCard() {
     const row = [];
     for (let j = 0; j < 5; j++) {
       if (i === 2 && j === 2) {
-        row.push({ text: "CASE GRATUITE", isFreeSpace: true, checked: true, url: "" });
+        row.push({
+          text: "CASE GRATUITE",
+          isFreeSpace: true,
+          checked: true,
+          url: "",
+        });
       } else {
-        row.push({ text: shuffledEvents.pop(), isFreeSpace: false, checked: false, url: "" });
+        row.push({
+          text: shuffledEvents.pop(),
+          isFreeSpace: false,
+          checked: false,
+          url: "",
+        });
       }
     }
     card.push(row);
@@ -95,9 +122,29 @@ function renderBingoCard(card) {
       }
       squareElement.appendChild(eventElement);
 
-      // Clip URL input (skip for free space)
+      // Clip URL input and checkbox (skip for free space)
       if (!square.isFreeSpace) {
-        // ... (rest of your existing code)
+        // Clip URL input field
+        const urlInput = document.createElement("input");
+        urlInput.type = "text";
+        urlInput.classList.add("bingo-url-input");
+        urlInput.placeholder = "Lien du clip ici";
+        urlInput.value = square.url || "";
+        urlInput.addEventListener("change", (e) => {
+          card[rowIndex][colIndex].url = e.target.value;
+        });
+        squareElement.appendChild(urlInput);
+
+        // Checkbox for marking the square as completed
+        const checkbox = document.createElement("input");
+        checkbox.type = "checkbox";
+        checkbox.classList.add("bingo-checkbox");
+        checkbox.checked = square.checked;
+        checkbox.addEventListener("change", (e) => {
+          card[rowIndex][colIndex].checked = e.target.checked;
+          checkForWins(card);
+        });
+        squareElement.appendChild(checkbox);
       }
       bingoCard.appendChild(squareElement);
     });
@@ -110,7 +157,7 @@ function checkForWins(card) {
 
   // Check rows
   for (let i = 0; i < 5; i++) {
-    if (card[i].every(square => square.checked)) {
+    if (card[i].every((square) => square.checked)) {
       alert(`Ligne ${i + 1} complète ! 🎉`);
       winDetected = true;
     }
@@ -118,8 +165,8 @@ function checkForWins(card) {
 
   // Check columns
   for (let j = 0; j < 5; j++) {
-    const column = card.map(row => row[j]);
-    if (column.every(square => square.checked)) {
+    const column = card.map((row) => row[j]);
+    if (column.every((square) => square.checked)) {
       alert(`Colonne ${j + 1} complète ! 🎉`);
       winDetected = true;
     }
@@ -128,17 +175,17 @@ function checkForWins(card) {
   // Check diagonals
   const diag1 = [card[0][0], card[1][1], card[2][2], card[3][3], card[4][4]];
   const diag2 = [card[0][4], card[1][3], card[2][2], card[3][1], card[4][0]];
-  if (diag1.every(square => square.checked)) {
+  if (diag1.every((square) => square.checked)) {
     alert("Diagonale complète ! 🎉");
     winDetected = true;
   }
-  if (diag2.every(square => square.checked)) {
+  if (diag2.every((square) => square.checked)) {
     alert("Diagonale complète ! 🎉");
     winDetected = true;
   }
 
   // Check blackout (all squares checked)
-  if (card.every(row => row.every(square => square.checked))) {
+  if (card.every((row) => row.every((square) => square.checked))) {
     alert("BLACKOUT !!! 🎊🎉");
     winDetected = true;
   }
@@ -150,60 +197,76 @@ function checkForWins(card) {
 function saveProgress(card) {
   const user = auth.currentUser;
   if (user) {
-    db.collection("users").doc(user.uid).set({
-      card: card,
-      lastUpdated: firebase.firestore.FieldValue.serverTimestamp()
-    }).then(() => {
-      console.log("Progrès sauvegardé !");
-    }).catch((error) => {
-      console.error("Erreur de sauvegarde : ", error);
-    });
+    db.collection("users")
+      .doc(user.uid)
+      .set({
+        card: card,
+        lastUpdated: firebase.firestore.FieldValue.serverTimestamp(),
+      })
+      .then(() => {
+        console.log("Progrès sauvegardé !");
+      })
+      .catch((error) => {
+        console.error("Erreur de sauvegarde : ", error);
+      });
   }
 }
 
 // Load Progress from Firestore
 function loadProgress(userId) {
-  db.collection("users").doc(userId).get().then((doc) => {
-    if (doc.exists) {
-      renderBingoCard(doc.data().card);
-    } else {
+  db.collection("users")
+    .doc(userId)
+    .get()
+    .then((doc) => {
+      if (doc.exists) {
+        renderBingoCard(doc.data().card);
+      } else {
+        const newCard = generateBingoCard();
+        renderBingoCard(newCard);
+        saveProgress(newCard);
+      }
+    })
+    .catch((error) => {
+      console.error("Erreur de chargement : ", error);
       const newCard = generateBingoCard();
       renderBingoCard(newCard);
-      saveProgress(newCard);
-    }
-  }).catch((error) => {
-    console.error("Erreur de chargement : ", error);
-    const newCard = generateBingoCard();
-    renderBingoCard(newCard);
-  });
+    });
 }
 
 // Login with Google
 googleLoginBtn.addEventListener("click", () => {
   const provider = new firebase.auth.GoogleAuthProvider();
-  auth.signInWithPopup(provider).then((result) => {
-    loginScreen.style.display = "none";
-    bingoScreen.style.display = "block";
-    loadProgress(result.user.uid);
-  }).catch((error) => {
-    console.error("Erreur Google Login : ", error);
-    alert("Erreur de connexion avec Google : " + error.message);
-  });
+  auth
+    .signInWithPopup(provider)
+    .then((result) => {
+      loginScreen.style.display = "none";
+      bingoScreen.style.display = "block";
+      loadProgress(result.user.uid);
+    })
+    .catch((error) => {
+      console.error("Erreur Google Login : ", error);
+      alert("Erreur de connexion avec Google : " + error.message);
+    });
 });
 
 // Login with Twitch (Placeholder - requires Twitch OAuth setup)
 twitchLoginBtn.addEventListener("click", () => {
-  alert("La connexion avec Twitch nécessite une configuration supplémentaire. Utilise Google pour l'instant !");
+  alert(
+    "La connexion avec Twitch nécessite une configuration supplémentaire. Utilise Google pour l'instant !",
+  );
 });
 
 // Logout
 logoutBtn.addEventListener("click", () => {
-  auth.signOut().then(() => {
-    loginScreen.style.display = "block";
-    bingoScreen.style.display = "none";
-  }).catch((error) => {
-    console.error("Erreur de déconnexion : ", error);
-  });
+  auth
+    .signOut()
+    .then(() => {
+      loginScreen.style.display = "block";
+      bingoScreen.style.display = "none";
+    })
+    .catch((error) => {
+      console.error("Erreur de déconnexion : ", error);
+    });
 });
 
 // Save Progress Button
@@ -218,7 +281,12 @@ shareCardBtn.addEventListener("click", () => {
   if (user) {
     const shareText = `Regarde ma carte de bingo pour le stream de Cyriacph ! ${window.location.href}`;
     if (navigator.share) {
-      navigator.share({ title: "Bingo Atypique 999", text: shareText, url: window.location.href })
+      navigator
+        .share({
+          title: "Bingo Atypique 999",
+          text: shareText,
+          url: window.location.href,
+        })
         .catch(console.error);
     } else {
       prompt("Copie ce lien pour partager ta carte :", window.location.href);
