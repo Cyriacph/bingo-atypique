@@ -134,17 +134,6 @@ function renderBingoCard(card) {
           card[rowIndex][colIndex].url = e.target.value;
         });
         squareElement.appendChild(urlInput);
-
-        // Checkbox for marking the square as completed
-        const checkbox = document.createElement("input");
-        checkbox.type = "checkbox";
-        checkbox.classList.add("bingo-checkbox");
-        checkbox.checked = square.checked;
-        checkbox.addEventListener("change", (e) => {
-          card[rowIndex][colIndex].checked = e.target.checked;
-          checkForWins(card);
-        });
-        squareElement.appendChild(checkbox);
       }
       bingoCard.appendChild(squareElement);
     });
